@@ -1,0 +1,53 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-16/server.schema.json",
+  "name": "io.github.saurabh2000/ghl-mcp-server",
+  "description": "GoHighLevel CRM integration for AI agents. 60+ tools across contacts, conversations, calendars, pipelines, payments, invoices, workflows, and more.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/saurabh2000/ghl-mcp-server",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@saurabh2000/ghl-mcp-server",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "GHL_API_KEY",
+          "description": "GoHighLevel Private Integration Token. Create at: GHL Settings → Private Integrations → Create New Integration.",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "GHL_LOCATION_ID",
+          "description": "GoHighLevel sub-account (location) ID. Visible in the URL when viewing a sub-account.",
+          "isRequired": true
+        },
+        {
+          "name": "GHL_BASE_URL",
+          "description": "GHL API base URL. The default works for all standard installs.",
+          "default": "https://services.leadconnectorhq.com"
+        },
+        {
+          "name": "GHL_API_VERSION",
+          "description": "Value for the GHL API Version header.",
+          "default": "2021-07-28"
+        },
+        {
+          "name": "TRANSPORT",
+          "description": "Transport mode: 'stdio' for Claude Desktop / Claude Code, 'http' for N8N and remote clients.",
+          "default": "stdio"
+        },
+        {
+          "name": "LOG_LEVEL",
+          "description": "Log verbosity.",
+          "default": "info"
+        }
+      ]
+    }
+  ]
+}

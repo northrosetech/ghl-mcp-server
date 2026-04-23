@@ -1,0 +1,46 @@
+{
+  "name": "@saurabh2000/ghl-mcp-server",
+  "version": "1.0.0",
+  "description": "GoHighLevel MCP Server - Full CRM integration for Claude, N8N, and custom apps",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "ghl-mcp-server": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "mcp.json",
+    "server.json"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:stdio": "TRANSPORT=stdio node dist/index.js",
+    "start:http": "TRANSPORT=http node dist/index.js",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "express": "^4.21.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "author": {
+    "name": "Saurabh K Shah",
+    "url": "https://saurabhshah.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/saurabh2000/ghl-mcp-server#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saurabh2000/ghl-mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saurabh2000/ghl-mcp-server/issues"
+  }
+}

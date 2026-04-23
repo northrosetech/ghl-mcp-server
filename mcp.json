@@ -1,0 +1,310 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-manifest.json",
+  "name": "ghl-mcp-server",
+  "displayName": "GoHighLevel MCP Server",
+  "version": "1.0.0",
+  "description": "Full GoHighLevel CRM integration for Claude, N8N, and custom AI agents. 60+ tools across contacts, conversations, calendars, pipelines, payments, invoices, workflows, and more.",
+  "author": {
+    "name": "Saurabh K Shah",
+    "url": "https://saurabhshah.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/saurabh2000/ghl-mcp-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saurabh2000/ghl-mcp-server"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "gohighlevel",
+    "ghl",
+    "crm",
+    "claude",
+    "n8n",
+    "agent",
+    "automation",
+    "sms",
+    "email",
+    "calendar",
+    "pipeline",
+    "invoice"
+  ],
+  "runtime": {
+    "type": "node",
+    "minVersion": "18.0.0",
+    "entrypoint": "dist/index.js"
+  },
+  "install": {
+    "steps": [
+      "git clone https://github.com/saurabh2000/ghl-mcp-server.git",
+      "cd ghl-mcp-server",
+      "npm install",
+      "npm run build"
+    ]
+  },
+  "transports": [
+    {
+      "type": "stdio",
+      "command": "node",
+      "args": ["dist/index.js"],
+      "env": {
+        "TRANSPORT": "stdio"
+      }
+    },
+    {
+      "type": "http",
+      "command": "node",
+      "args": ["dist/index.js"],
+      "env": {
+        "TRANSPORT": "http",
+        "PORT": "3001"
+      },
+      "url": "http://localhost:3001/mcp",
+      "health": "http://localhost:3001/health"
+    }
+  ],
+  "env": {
+    "GHL_API_KEY": {
+      "required": true,
+      "secret": true,
+      "description": "GoHighLevel Private Integration Token. Create at: GHL Settings → Private Integrations → Create New Integration."
+    },
+    "GHL_LOCATION_ID": {
+      "required": true,
+      "secret": false,
+      "description": "GoHighLevel sub-account (location) ID. Visible in the URL when viewing a sub-account."
+    },
+    "GHL_BASE_URL": {
+      "required": false,
+      "secret": false,
+      "default": "https://services.leadconnectorhq.com",
+      "description": "GHL API base URL. The default works for all standard installs."
+    },
+    "GHL_API_VERSION": {
+      "required": false,
+      "secret": false,
+      "default": "2021-07-28",
+      "description": "Value for the GHL API Version header."
+    },
+    "TRANSPORT": {
+      "required": false,
+      "secret": false,
+      "default": "stdio",
+      "description": "Transport mode: 'stdio' for Claude Desktop / Claude Code, 'http' for N8N and remote clients.",
+      "enum": ["stdio", "http"]
+    },
+    "PORT": {
+      "required": false,
+      "secret": false,
+      "default": "3001",
+      "description": "HTTP port when TRANSPORT=http."
+    },
+    "LOG_LEVEL": {
+      "required": false,
+      "secret": false,
+      "default": "info",
+      "description": "Log verbosity.",
+      "enum": ["debug", "info", "warn", "error"]
+    }
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false,
+    "sampling": false
+  },
+  "toolCategories": [
+    {
+      "name": "Contacts",
+      "count": 16,
+      "tools": [
+        "ghl_search_contacts",
+        "ghl_get_contact",
+        "ghl_create_contact",
+        "ghl_update_contact",
+        "ghl_delete_contact",
+        "ghl_upsert_contact",
+        "ghl_add_contact_tags",
+        "ghl_remove_contact_tags",
+        "ghl_get_contact_notes",
+        "ghl_create_contact_note",
+        "ghl_delete_contact_note",
+        "ghl_get_contact_tasks",
+        "ghl_create_contact_task",
+        "ghl_update_contact_task",
+        "ghl_add_contact_to_workflow",
+        "ghl_remove_contact_from_workflow"
+      ]
+    },
+    {
+      "name": "Conversations & Messaging",
+      "count": 6,
+      "tools": [
+        "ghl_search_conversations",
+        "ghl_get_conversation",
+        "ghl_get_messages",
+        "ghl_send_message",
+        "ghl_cancel_scheduled_message",
+        "ghl_update_conversation"
+      ]
+    },
+    {
+      "name": "Calendars & Appointments",
+      "count": 8,
+      "tools": [
+        "ghl_list_calendars",
+        "ghl_get_calendar",
+        "ghl_get_free_slots",
+        "ghl_get_events",
+        "ghl_create_event",
+        "ghl_update_event",
+        "ghl_delete_event",
+        "ghl_create_calendar"
+      ]
+    },
+    {
+      "name": "Opportunities & Pipelines",
+      "count": 7,
+      "tools": [
+        "ghl_search_opportunities",
+        "ghl_get_opportunity",
+        "ghl_create_opportunity",
+        "ghl_update_opportunity",
+        "ghl_delete_opportunity",
+        "ghl_update_opportunity_status",
+        "ghl_list_pipelines"
+      ]
+    },
+    {
+      "name": "Payments & Invoices",
+      "count": 9,
+      "tools": [
+        "ghl_list_orders",
+        "ghl_get_order",
+        "ghl_list_transactions",
+        "ghl_list_subscriptions",
+        "ghl_list_invoices",
+        "ghl_get_invoice",
+        "ghl_create_invoice",
+        "ghl_send_invoice",
+        "ghl_void_invoice"
+      ]
+    },
+    {
+      "name": "Workflows & Custom Fields",
+      "count": 3,
+      "tools": [
+        "ghl_list_workflows",
+        "ghl_list_custom_fields",
+        "ghl_create_custom_field"
+      ]
+    },
+    {
+      "name": "Locations & Users",
+      "count": 4,
+      "tools": [
+        "ghl_get_location",
+        "ghl_get_location_tags",
+        "ghl_create_location_tag",
+        "ghl_search_users"
+      ]
+    },
+    {
+      "name": "Forms, Surveys & Campaigns",
+      "count": 4,
+      "tools": [
+        "ghl_list_forms",
+        "ghl_get_form_submissions",
+        "ghl_list_surveys",
+        "ghl_list_campaigns"
+      ]
+    },
+    {
+      "name": "Social, Funnels, Products, Blogs",
+      "count": 6,
+      "tools": [
+        "ghl_list_social_posts",
+        "ghl_create_social_post",
+        "ghl_list_social_accounts",
+        "ghl_list_funnels",
+        "ghl_list_products",
+        "ghl_list_blogs",
+        "ghl_list_links"
+      ]
+    }
+  ],
+  "rateLimits": {
+    "burst": "100 requests per 10 seconds",
+    "daily": "200,000 requests per day",
+    "behavior": "Built-in queuing and automatic retry on 429."
+  },
+  "clients": {
+    "claude-desktop": {
+      "configPath": {
+        "darwin": "~/Library/Application Support/Claude/claude_desktop_config.json",
+        "win32": "%APPDATA%\\Claude\\claude_desktop_config.json"
+      },
+      "example": {
+        "mcpServers": {
+          "ghl": {
+            "command": "node",
+            "args": ["/absolute/path/to/ghl-mcp-server/dist/index.js"],
+            "env": {
+              "GHL_API_KEY": "your_private_integration_token",
+              "GHL_LOCATION_ID": "your_location_id",
+              "TRANSPORT": "stdio"
+            }
+          }
+        }
+      }
+    },
+    "claude-code": {
+      "configPath": ".mcp.json (in project root)",
+      "example": {
+        "mcpServers": {
+          "ghl": {
+            "command": "node",
+            "args": ["./ghl-mcp-server/dist/index.js"],
+            "env": {
+              "GHL_API_KEY": "your_private_integration_token",
+              "GHL_LOCATION_ID": "your_location_id"
+            }
+          }
+        }
+      }
+    },
+    "n8n": {
+      "nodeType": "MCP Client",
+      "transport": "HTTP Streamable",
+      "url": "http://localhost:3001/mcp",
+      "startCommand": "TRANSPORT=http PORT=3001 GHL_API_KEY=your_token GHL_LOCATION_ID=your_id node dist/index.js"
+    },
+    "cursor": {
+      "configPath": "~/.cursor/mcp.json",
+      "example": {
+        "mcpServers": {
+          "ghl": {
+            "command": "node",
+            "args": ["/absolute/path/to/ghl-mcp-server/dist/index.js"],
+            "env": {
+              "GHL_API_KEY": "your_private_integration_token",
+              "GHL_LOCATION_ID": "your_location_id"
+            }
+          }
+        }
+      }
+    }
+  },
+  "errorHandling": {
+    "401": "Invalid API key. Must be a GHL Private Integration Token.",
+    "403": "Missing scopes. Edit your Private Integration in GHL Settings and enable required scopes.",
+    "404": "Resource not found. Check the provided ID.",
+    "422": "Validation error. Response includes field-level details.",
+    "429": "Rate limited. The server queues and retries automatically."
+  },
+  "documentation": {
+    "readme": "./README.md",
+    "contributorGuide": "./CLAUDE.md"
+  }
+}
