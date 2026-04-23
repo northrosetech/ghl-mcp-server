@@ -1,16 +1,16 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-16/server.schema.json",
-  "name": "io.github.saurabh2000/ghl-mcp-server",
+  "name": "io.github.northrosetech/ghl-mcp-server",
   "description": "GoHighLevel CRM integration for AI agents. 60+ tools across contacts, conversations, calendars, pipelines, payments, invoices, workflows, and more.",
   "version": "1.0.0",
   "repository": {
-    "url": "https://github.com/saurabh2000/ghl-mcp-server",
+    "url": "https://github.com/northrosetech/ghl-mcp-server",
     "source": "github"
   },
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "@saurabh2000/ghl-mcp-server",
+      "identifier": "@northrosetech/ghl-mcp-server",
       "version": "1.0.0",
       "transport": {
         "type": "stdio"

@@ -86,7 +86,7 @@ async function runHTTP(): Promise<void> {
         mcp: "POST /mcp",
         health: "GET /health",
       },
-      documentation: "https://github.com/saurabh2000/ghl-mcp-server",
+      documentation: "https://github.com/northrosetech/ghl-mcp-server",
     });
   });
 

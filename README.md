@@ -36,7 +36,7 @@ A comprehensive Model Context Protocol (MCP) server that connects AI assistants 
 ### 2. Install & Configure
 
 ```bash
-git clone https://github.com/saurabh2000/ghl-mcp-server.git
+git clone https://github.com/northrosetech/ghl-mcp-server.git
 cd ghl-mcp-server
 npm install
 cp .env.example .env
