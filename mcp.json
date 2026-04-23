@@ -2,7 +2,7 @@
   "$schema": "https://modelcontextprotocol.io/schemas/server-manifest.json",
   "name": "ghl-mcp-server",
   "displayName": "GoHighLevel MCP Server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Full GoHighLevel CRM integration for Claude, N8N, and custom AI agents. 60+ tools across contacts, conversations, calendars, pipelines, payments, invoices, workflows, and more.",
   "author": {
     "name": "Saurabh K Shah",

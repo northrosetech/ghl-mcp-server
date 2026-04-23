@@ -1,6 +1,7 @@
 {
   "name": "@northrosetech/ghl-mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "mcpName": "io.github.northrosetech/ghl-mcp-server",
   "description": "GoHighLevel MCP Server - Full CRM integration for Claude, N8N, and custom apps",
   "type": "module",
   "main": "dist/index.js",

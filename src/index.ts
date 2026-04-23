@@ -20,7 +20,7 @@ import { registerBusinessTools } from "./tools/business.js";
 // ─── Initialize MCP Server ───
 const server = new McpServer({
   name: "ghl-mcp-server",
-  version: "1.0.0",
+  version: "1.0.1",
 });
 
 // ─── Register All Tools ───
@@ -51,7 +51,7 @@ async function runHTTP(): Promise<void> {
     res.json({
       status: "ok",
       server: "ghl-mcp-server",
-      version: "1.0.0",
+      version: "1.0.1",
       transport: "http",
       timestamp: new Date().toISOString(),
     });
@@ -79,7 +79,7 @@ async function runHTTP(): Promise<void> {
   app.get("/", (_req, res) => {
     res.json({
       name: "GHL MCP Server",
-      version: "1.0.0",
+      version: "1.0.1",
       description: "GoHighLevel MCP Server for Claude, N8N, and custom AI agents",
       author: "Saurabh K Shah (https://saurabhshah.com)",
       endpoints: {
